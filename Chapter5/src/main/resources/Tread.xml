@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="Thread" parallel="classes" thread-count="3">
+    <test name="demo1">
+        <classes >
+            <class name="com.course.testng.MultiThread.MultiThreadOnxml"/>
+            <class name="com.course.testng.IgnoreTest"/>
+
+        </classes>
+
+    </test>
+
+    <test name="demo2">
+        <classes >
+
+            <class name="com.course.testng.MultiThread.MultiThreadOnxml"/>
+
+
+        </classes>
+
+    </test>
+</suite>

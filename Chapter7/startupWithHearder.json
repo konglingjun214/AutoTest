@@ -1,0 +1,19 @@
+[
+  {
+    "description": "这是一个带hearder信息的post请求",
+    "request": {
+      "uri": "/post/with/hearder",
+      "method": "post",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "json": {
+        "name": "lala",
+        "age": "99"
+      }
+    },
+    "response": {
+      "text": "我带着参数回来了"
+    }
+  }
+]

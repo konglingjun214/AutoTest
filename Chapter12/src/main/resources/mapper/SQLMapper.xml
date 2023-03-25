@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间mapper,如果有多个mapper文件，这个必须唯一 -->
+<mapper namespace="com.course.model">
+
+    <!--获取登陆接口测试case-->
+    <select id="loginCase" parameterType="Integer"  resultType="com.course.model.LoginCase">
+        select * from loginCase where id = #{id};
+    </select>
+
+    <!--获取添加用户接口测试case-->
+    <select id="addUserCase" parameterType="Integer" resultType="com.course.model.AddUserCase">
+        select * from addUserCase where id=#{id};
+    </select>
+
+    <!--获取用户信息接口测试case-->
+    <select id="getUserInfoCase" parameterType="Integer" resultType="com.course.model.GetUserInfoCase">
+        select * from getUserInfoCase where id=#{id};
+    </select>
+
+    <!--获取用户列表接口测试case-->
+    <select id="getUserListCase" parameterType="Integer" resultType="com.course.model.GetUserListCase">
+        select * from getUserListCase where id=#{id};
+    </select>
+
+    <!--修改/删除用户信息接口测试case-->
+    <select id="updateUserInfoCase" parameterType="Integer" resultType="com.course.model.UpdateUserInfoCase">
+        select * from updateUserInfoCase where id=#{id};
+    </select>
+
+
+
+    <select id="getUserInfo" parameterType="com.course.model.AddUserCase" resultType="com.course.model.User">
+        select * from user where id=#{id};
+    </select>
+
+    <select id="addUser" parameterType="com.course.model.AddUserCase" resultType="com.course.model.User">
+        select * from user where
+        name=#{userName}
+        and password=#{password}
+        and sex=#{sex}
+        and age=#{age}
+        and permission=#{permission}
+        and isDelete=#{isDelete};
+
+    </select>
+    <select id="addUserTest"  resultType="Integer">
+        select * from user where
+        name="zhaozhao"
+        and password=123456
+        and sex=0
+        and age=35
+        and permission=1
+        and isDelete=0;
+
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+server:
+  port: 8888
+
+logging:
+  path: logs
+  file: userManager.log
+
+
+spring:
+  application:
+    name: userManager
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.2.199:3306/course
+    username: root
+    password: 12345abcde
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+mybatis:
+   type-aliases-package: com.course.model
+   mapper-locations:
+     - mapper/*
+
+
+
