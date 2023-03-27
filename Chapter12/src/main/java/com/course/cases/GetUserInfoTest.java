@@ -10,18 +10,22 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.TransactionIsolationLevel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
 public class GetUserInfoTest {
     @Test(dependsOnGroups = "loginTrue",description = "获取userId为1的用户信息接口测试")
+
     public void getUserInfo() throws IOException {
         SqlSession session = DatabaseUtil.getSqlSession();
         GetUserInfoCase getUserInfoCase = session.selectOne("getUserInfoCase", 1);

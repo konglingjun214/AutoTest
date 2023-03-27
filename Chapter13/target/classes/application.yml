@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.2.199:3306/course
     username: root
-    password: 12345abcde
+    password: 123
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER

@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,37 +26,26 @@ import java.util.List;
 public class AddUserTest {
     @Test(dependsOnGroups = "loginTrue",description = "添加用户接口测试")
 
-    public void addUser() throws IOException, InterruptedException {
+    public void addUser() throws IOException, InterruptedException, SQLException {
         SqlSession session= DatabaseUtil.getSqlSession();
-
-
+        //在session第一次执行前，设置事务隔离级别
+        session.getConnection().setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+        //session第一次执行，获取添加用户请求的测试数据
         AddUserCase addUserCase=session.selectOne("addUserCase",1);
         System.out.println(addUserCase.toString());
         System.out.println(TestConfig.addUserUrl);
 
 
-//        AddUserCase addUserCase = new AddUserCase();
-//        addUserCase.setUserName("zhaozhao");
-//        addUserCase.setAge("35");
-//        addUserCase.setSex("0");
-//        addUserCase.setPermission("1");
-//        addUserCase.setIsDelete("0");
-//        addUserCase.setPassword("123456");
-//       第一步发送请求，获取请求结果
+
+        // 第一步发送请求，获取请求返回结果
         String result=getResult(addUserCase);
         Thread.sleep(5000);
-
-        //验证结果
-        log.info("1、获得添加用户接口的返回结果是："+result);
-
-//        log.info("测试手动添加");
-
-
+        //查看数据库被添加成功的用户数据
+        //session第二次执行
         List<User> users=session.selectList("addUserTest");
-        log.info("查询添加用户的数量"+users.size());
-        log.info("查询添加用户的是"+Arrays.toString(users.toArray()));
-
-//        Assert.assertEquals(result,addUserCase.getExpected());
+        log.info("添加用户的数量是"+users.size());
+        //判断预期结果与请求返回结果是否一致
+       Assert.assertEquals(result,addUserCase.getExpected());
 
 
     }
